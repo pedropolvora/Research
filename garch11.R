@@ -82,6 +82,13 @@ plot(variance)
 plot(g@h.t, type='l')
 abline(lsfit(1:length(g@h.t), g@h.t), col='red')
 a1 <- lsfit(1:length(g@h.t), g@h.t)
-ls.print(a1)
+ls.print(a1)  ## Intercept  0.0093,
 
-
+## 2blocks of data
+par(mfrow=c(2,1))
+#1
+plot(g@h.t[1:1150], type='l')
+abline(lsfit((1:1150), g@h.t[1:1150]), col='red')
+#2
+plot(g@h.t[1151:2372], type='l')
+abline(lsfit((1151:2372), g@h.t[1151:2372]), col='red')
