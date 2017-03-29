@@ -7,17 +7,20 @@ library(TSA)
 library(forecast)
 
 date_price <- read.csv("dataa.csv", sep=",")
-#since 04/01/2011
-price <- ts(date_price[168:2373,2], start=c(2011), frequency = 365)
+#since 01/01/2011
+#price <- ts(date_price[168:2373,2], start=c(2011), frequency = 365) ### ts() applied later on log. returns
+price <- date_price[168:2373,2]
 plot(price,type='l')
 
-log_r <- diff(log(price))
+log_r <- ts(diff(log(price)), start=c(2011), frequency = 365)
 plot(log_r, type='l')
 abline(0,0, col='green')
+plot(decompose(log_r))
+
 
 ## price vs. returns
 par(mfrow=c(2,1))
-plot(price,type='l')
+plot(price,type='l') ### ts()...
 plot(log_r, type='l')
 abline(0,0, col='green')
 ##
