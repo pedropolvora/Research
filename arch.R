@@ -8,7 +8,7 @@ library(forecast)
 
 date_price <- read.csv("dataa.csv", sep=",")
 #since 01/01/2011
-#price <- ts(date_price[168:2373,2], start=c(2011), frequency = 365) ### ts() applied later on log. returns
+#price.ts <- ts(date_price[168:2373,2], start=c(2011), frequency = 365) ### ts() applied later on log. returns
 price <- date_price[168:2373,2]
 plot(price,type='l')
 
@@ -24,6 +24,13 @@ plot(price,type='l') ### ts()...
 plot(log_r, type='l')
 abline(0,0, col='green')
 ##
+# mozno blbost??
+price.ts <- ts(date_price[168:2373,2], start=c(2011), frequency = 365) 
+plot(decompose(log_r))
+plot(decompose(price.ts))
+plot(decompose(log(price.ts)))
+
+
 ### FITTING AN ARCH MODEL - It can be fruitful to look at the ACF and PACF of both yt and yt2. 
 ### For instance, if yt appears to be WN and yt2 appears to be AR(1), then an ARCH(1) model for the variance is suggested.
 ### If the PACF of the yt2 suggests AR(m), then ARCH(m) may work. 

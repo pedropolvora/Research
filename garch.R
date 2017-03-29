@@ -1,3 +1,4 @@
+### http://yunus.hacettepe.edu.tr/~iozkan/eco665/archgarch.html
 require(rmgarch)
 require(PerformanceAnalytics)
 require(zoo)
@@ -49,3 +50,13 @@ garch.fit = ugarchfit(garch11.spec, data = price1, fit.control=list(scale=TRUE))
 print(garch.fit)
 
 plot(garch.fit, which=3)
+
+
+
+
+### forecast ## celeee zle
+garch.fit.100 = ugarchfit(garch11.spec, data = price1, fit.control=list(scale=TRUE), out.sample = 100) ## subsample
+forc.100 = ugarchforecast(garch.fit.100, n.ahead=100, n.roll = 100)
+fpm(forc.100) # fpm (forecast performance measure function)
+forc.100
+plot(forc.100, which="all")
