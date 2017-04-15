@@ -13,7 +13,7 @@ price <- date_price[168:2373,2]
 plot(price,type='l')
 
 log_r <- ts(diff(log(price)), start=c(2011), frequency = 365)
-plot(log_r, type='l')
+plot(log_r, type='l', ylab = "Log Returns")
 abline(0,0, col='green')
 plot(decompose(log_r))
 
