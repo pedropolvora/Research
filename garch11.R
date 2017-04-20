@@ -14,15 +14,6 @@ acf(log_r)
 hist(log_r, breaks = 20)
 osx<-seq(min(log_r),max(log_r), 0.01)
 lines(osx, dnorm(osx, mean(log_r),sd(log_r)),col='red')
-      
-
-ks.test(log_r, pnorm, mean(log_r), sd(log_r), alternative = "two.sided")
-ks.test(log_r, plnorm, mean(log_r), sd(log_r), alternative = "two.sided")
-ks.test(log_r, pt, df = 3, alternative = "two.sided")
-
-fitdistr(log_r, "t") #1.2259...
-ks.test(log_r, pt, df = 1, alternative = "two.sided")
-ks.test(log_r, pt, df = 2, alternative = "two.sided")
 
 
   ###test 1 - garch(1,1) 

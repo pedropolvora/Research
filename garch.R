@@ -54,7 +54,7 @@ plot(garch.fit, which=3)
 
 
 
-### forecast ## celeee zle
+### forecast ## all wrong...
 garch.fit.100 = ugarchfit(garch11.spec, data = price1, fit.control=list(scale=TRUE), out.sample = 100) ## subsample
 forc.100 = ugarchforecast(garch.fit.100, n.ahead=100, n.roll = 100)
 fpm(forc.100) # fpm (forecast performance measure function)
