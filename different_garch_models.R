@@ -7,7 +7,7 @@ price <- date_price[168:2359,2]
 log_r <- ts(diff(log(price)), start=c(2011), frequency = 365)
 
 ############################################################################      
-# The GARCH model     
+# The GARCH(1,1) model     
 #########################################################################
 spec = ugarchspec(# variance equation
   variance.model=list(model="sGARCH",garchOrder=c(1,1)),
@@ -22,6 +22,19 @@ k.garch11
 # Plot of conditional standard deviation estimates (3)
 # and News-Impact curve (12).
 plot(k.garch11)
+############################################################################      
+# The GARCH(1,2) model     
+#########################################################################
+spec = ugarchspec(# variance equation
+  variance.model=list(model="sGARCH",garchOrder=c(1,2)),
+  # mean equation
+  mean.model=list(armaOrder=c(0,0),include.mean=F), 
+  # assumed distribution of errors
+  distribution.model="norm")
+
+k.garch12 = ugarchfit( spec=spec, data=na.omit(log_r))
+k.garch12
+plot(k.garch12)
 
 ############################################################################      
 # The EGARCH model     
@@ -54,7 +67,7 @@ k.tgarch11 = ugarchfit( spec=spec, data=na.omit(log_r))
 k.tgarch11
 plot(k.tgarch11)
 
-####
+#### NIC
 par(mfrow=c(3,1))
 plot( k.garch11, which = 12)
 plot(k.egarch11, which = 12)
